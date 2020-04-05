@@ -141,6 +141,12 @@ cfg_if! {
 
         mod hermit;
         pub use hermit::*;
+    } else if #[cfg(target_os = "icecap")] {
+        mod fixed_width_ints;
+        pub use fixed_width_ints::*;
+
+        mod icecap;
+        pub use icecap::*;
     } else if #[cfg(all(target_env = "sgx", target_vendor = "fortanix"))] {
         mod fixed_width_ints;
         pub use fixed_width_ints::*;
