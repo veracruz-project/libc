@@ -40,3 +40,33 @@ cfg_if! {
         }
     }
 }
+
+
+// mmap things
+
+pub const PROT_NONE: c_int = 0;
+pub const PROT_READ: c_int = 1;
+pub const PROT_WRITE: c_int = 2;
+pub const PROT_EXEC: c_int = 4;
+pub const MAP_ANON: c_int = 0x0020;
+pub const MAP_PRIVATE: c_int = 0x0002;
+pub const MAP_FIXED: c_int = 0x0200;
+
+
+extern "C" {
+    pub fn mmap(
+        addr: *mut ::c_void,
+        len: ::size_t,
+        prot: ::c_int,
+        flags: ::c_int,
+        fd: ::c_int,
+        offset: ::size_t,
+    ) -> *mut ::c_void;
+
+    pub fn munmap(
+        addr: *mut ::c_void,
+        len: ::size_t
+    ) -> ::c_int;
+}
+
+
